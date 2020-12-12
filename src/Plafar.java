@@ -1,5 +1,7 @@
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,42 +44,115 @@ public class Plafar {
 				if (nume.equals(numeAdministrator) && parola.equals(parolaAdministrator)) {
 					window.setVisible(false);
 					
-					JFrame evidentaProduse = new JFrame("Evidenta produse parafarmaceutice");
-					JLabel produseLabel = new JLabel("Produse:");
-					JTextField produseField = new JTextField();
-					evidentaProduse.add(produseLabel);
-					evidentaProduse.add(produseField);
+					JFrame evidentaProduse = new JFrame("EVIDENTA PRODUSE FARMACEUTICE");
+					evidentaProduse.setLayout(new FlowLayout());
+					JPanel panelProduse = new JPanel();
+
+					Produs[] produse = { new Produs("Ceai musetel", "20", "3", "2023"),
+							new Produs("Ceai tei", "10", "5", "2025"), new Produs("Ceai sunatoare", "10","3","2022"),new Produs("Rostopasca", "5", "15", "2025"),
+							new Produs("Spirulina", "2", "10", "2026")};
+					
+					JComboBox produseList = new JComboBox(produse);
+					panelProduse.add(produseList);
+					
+					JLabel  stocuriLabel = new JLabel("STOCURI");
+					JTextField stocuriFeild = new JTextField(10);
+					panelProduse.add(stocuriLabel);
+					panelProduse.add(stocuriFeild);
+
+					JLabel cantitateLabel = new JLabel("CANTITATE:");
+					JTextField cantitateField = new JTextField(10);
+					panelProduse.add(cantitateLabel);
+					panelProduse.add(cantitateField);
+
+					JLabel pretLabel = new JLabel("PRET:");
+					JTextField pretField = new JTextField(10);
+					panelProduse.add(pretLabel);
+					panelProduse.add(pretField);
+
+					JLabel valabilitateLabel = new JLabel("TERMEN VALABILITATE:");
+					JTextField valabilitateField = new JTextField(10);
+					panelProduse.add(valabilitateLabel);
+					panelProduse.add(valabilitateField);
+					evidentaProduse.add(panelProduse);
+					panelProduse.setBackground(Color.orange);
+					
+					JPanel panelVanzare = new JPanel();
+					JLabel vanzare = new JLabel("VANZARE");
+					JTextField vanzareField = new JTextField(10);
+					panelVanzare.add(vanzare);
+					panelVanzare.add(vanzareField);
+					
+					JLabel produseLabel1 = new JLabel("PRODUSE:");
+					JTextField produseField1 = new JTextField(10);
+					panelVanzare.add(produseLabel1);
+					panelVanzare.add(produseField1);
+					
+					
+					JLabel cantitateLabel1 = new JLabel("CANTITATE:");
+					JTextField cantitateField1 = new JTextField(10);
+					panelVanzare.add(cantitateLabel1);
+					panelVanzare.add(cantitateField1);
+					
+					JLabel incasat = new JLabel("TOTAL INCASAT:");
+					JTextField incasatField = new JTextField(10);
+					panelVanzare.add(incasat);
+					panelVanzare.add(incasatField);
+					
+					JButton vindeButon = new JButton("VINDE");
+					panelVanzare.add(vindeButon);
+					evidentaProduse.add(panelVanzare);
+					panelVanzare.setBackground(Color.red);
 				
-					JLabel cantitateLabel = new JLabel("Cantitate:");
-					JTextField cantitateField = new JTextField();
-					evidentaProduse.add(cantitateLabel);
-					evidentaProduse.add(cantitateField);
-					
-					JLabel valabilitateLabel = new JLabel("Termen valabilitate:");
-					JTextField valabilitateField = new JTextField();
-					evidentaProduse.add(valabilitateLabel);
-	                evidentaProduse.add(valabilitateField);				
-					
-					String[] produseStrings = { "Ceai musetel", "Ceai tei", "Ceai paducel", "Rostopasca", "Galbenele" };
-					JComboBox produseList = new JComboBox(produseStrings);
-					produseList.setBounds(90, 90,130,50); 
-					evidentaProduse.add(produseList);
-				    evidentaProduse.setLayout(new FlowLayout());    
-				    evidentaProduse.setSize(4000,5000);    
-				    evidentaProduse.setVisible(true);  
-				    evidentaProduse.pack();
 					
 					
+					JPanel panelAdaugaProdus = new JPanel();
+					JLabel adaugaProdus = new JLabel("ADAUGA PRODUS:");
+					JTextField adaugaProdusField = new JTextField(10);
+					panelAdaugaProdus.add(adaugaProdus);
+					panelAdaugaProdus.add(adaugaProdusField);
+					
+					JLabel numeLabel2 = new JLabel("NUME:");
+					JTextField numeField2 = new JTextField(10);
+					panelAdaugaProdus.add(numeLabel2);
+					panelAdaugaProdus.add(numeField2);
+					
+					JLabel cantitateLabel2 = new JLabel("CANTITATE:");
+					JTextField cantitateField2 = new JTextField(10);
+					panelAdaugaProdus.add(cantitateLabel2);
+					panelAdaugaProdus.add(cantitateField2);
+					
+					JLabel pretLabel2 = new JLabel("PRET:");
+					JTextField pretField2 = new JTextField(10);
+					panelAdaugaProdus.add(pretLabel2);
+					panelAdaugaProdus.add(pretField2);
+					
+					JButton adaugaButon = new JButton("ADAUGA");
+					panelAdaugaProdus.add(adaugaButon);
+					panelAdaugaProdus.setBackground(Color.green);
+					evidentaProduse.add(panelAdaugaProdus);
+					
+					
+					
+					
+
+					produseList.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Produs selectedItem = (Produs) produseList.getSelectedItem();
+							cantitateField.setText(selectedItem.cantitate);
+							pretField.setText(selectedItem.pret);
+							valabilitateField.setText(selectedItem.valabilitate);
+						}
+						
+					});
+					evidentaProduse.setVisible(true);
+					evidentaProduse.pack();
 				} else {
 					errorLabel.setText("Incorect username sau password");
-
 				}
-
-				// a luat valuarea parolei si o transforma in
 			}
-
 		});
-
 	}
 
 	private static void setLookAndFeel() {
@@ -87,5 +162,4 @@ public class Plafar {
 			System.out.println(exc.getMessage());
 		}
 	}
-
 }
