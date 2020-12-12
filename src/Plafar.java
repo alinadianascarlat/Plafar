@@ -47,6 +47,9 @@ public class Plafar {
 					JFrame evidentaProduse = new JFrame("EVIDENTA PRODUSE FARMACEUTICE");
 					evidentaProduse.setLayout(new FlowLayout());
 					JPanel panelProduse = new JPanel();
+					JLabel  stocuriLabel = new JLabel("STOCURI");
+					panelProduse.add(stocuriLabel);
+
 
 					Produs[] produse = { new Produs("Ceai musetel", "20", "3", "2023"),
 							new Produs("Ceai tei", "10", "5", "2025"), new Produs("Ceai sunatoare", "10","3","2022"),new Produs("Rostopasca", "5", "15", "2025"),
@@ -55,39 +58,31 @@ public class Plafar {
 					JComboBox produseList = new JComboBox(produse);
 					panelProduse.add(produseList);
 					
-					JLabel  stocuriLabel = new JLabel("STOCURI");
-					JTextField stocuriFeild = new JTextField(10);
-					panelProduse.add(stocuriLabel);
-					panelProduse.add(stocuriFeild);
-
 					JLabel cantitateLabel = new JLabel("CANTITATE:");
 					JTextField cantitateField = new JTextField(10);
 					panelProduse.add(cantitateLabel);
 					panelProduse.add(cantitateField);
+					cantitateField.setEditable(false);
 
 					JLabel pretLabel = new JLabel("PRET:");
 					JTextField pretField = new JTextField(10);
 					panelProduse.add(pretLabel);
 					panelProduse.add(pretField);
+					pretField.setEditable(false);
 
 					JLabel valabilitateLabel = new JLabel("TERMEN VALABILITATE:");
 					JTextField valabilitateField = new JTextField(10);
 					panelProduse.add(valabilitateLabel);
 					panelProduse.add(valabilitateField);
 					evidentaProduse.add(panelProduse);
+					valabilitateField.setEditable(false);
 					panelProduse.setBackground(Color.orange);
 					
 					JPanel panelVanzare = new JPanel();
 					JLabel vanzare = new JLabel("VANZARE");
-					JTextField vanzareField = new JTextField(10);
+					JComboBox produseList1 = new JComboBox(produse);
 					panelVanzare.add(vanzare);
-					panelVanzare.add(vanzareField);
-					
-					JLabel produseLabel1 = new JLabel("PRODUSE:");
-					JTextField produseField1 = new JTextField(10);
-					panelVanzare.add(produseLabel1);
-					panelVanzare.add(produseField1);
-					
+					panelVanzare.add(produseList1);
 					
 					JLabel cantitateLabel1 = new JLabel("CANTITATE:");
 					JTextField cantitateField1 = new JTextField(10);
@@ -98,19 +93,16 @@ public class Plafar {
 					JTextField incasatField = new JTextField(10);
 					panelVanzare.add(incasat);
 					panelVanzare.add(incasatField);
+					incasatField.setEditable(false);
 					
 					JButton vindeButon = new JButton("VINDE");
 					panelVanzare.add(vindeButon);
 					evidentaProduse.add(panelVanzare);
-					panelVanzare.setBackground(Color.red);
-				
-					
+					panelVanzare.setBackground(Color.red);	
 					
 					JPanel panelAdaugaProdus = new JPanel();
 					JLabel adaugaProdus = new JLabel("ADAUGA PRODUS:");
-					JTextField adaugaProdusField = new JTextField(10);
 					panelAdaugaProdus.add(adaugaProdus);
-					panelAdaugaProdus.add(adaugaProdusField);
 					
 					JLabel numeLabel2 = new JLabel("NUME:");
 					JTextField numeField2 = new JTextField(10);
@@ -132,7 +124,14 @@ public class Plafar {
 					panelAdaugaProdus.setBackground(Color.green);
 					evidentaProduse.add(panelAdaugaProdus);
 					
-					
+					vindeButon.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							Produs produsVanzare = (Produs) produseList1.getSelectedItem();
+							int cantitate = Integer.parseInt(cantitateField1.getText());
+							incasatField.setText(Integer.parseInt(produsVanzare.pret) * cantitate + "");
+						}
+					});
 					
 					
 
