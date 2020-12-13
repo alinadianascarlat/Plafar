@@ -1,8 +1,8 @@
 
 public class Produse {
-	private static Produs[] produse = { new Produs("Ceai musetel", 20, "3", "2023"),
-			new Produs("Ceai tei", 10, "5", "2025"), new Produs("Ceai sunatoare", 10, "3", "2022"),
-			new Produs("Rostopasca", 5, "15", "2025"), new Produs("Spirulina", 2, "10", "2026") };
+	private static Produs[] produse = { new Produs("Ceai musetel", 20, 3.0, "2023"),
+			new Produs("Ceai tei", 10, 5.0, "2025"), new Produs("Ceai sunatoare", 10, 3.0, "2022"),
+			new Produs("Rostopasca", 5, 15.0, "2025"), new Produs("Spirulina", 2, 10.0, "2026") };
 
 	public static Produs[] getProduse() {
 		return produse;
