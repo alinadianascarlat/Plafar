@@ -1,11 +1,11 @@
 
 public class Produs {
 	String nume;
-	String cantitate;
-	String pret;
+	int cantitate;
+	String pret; // trebuie double
 	String valabilitate;
 	
-	public Produs(String nume, String cantitate, String pret, String valabilitate) {
+	public Produs(String nume, int cantitate, String pret, String valabilitate) {
 		this.nume = nume;
 		this.cantitate = cantitate;
 		this.pret = pret;
