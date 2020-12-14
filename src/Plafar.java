@@ -1,4 +1,4 @@
-
+ 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
@@ -59,10 +59,12 @@ public class Plafar {
 					panelProduse.add(produseList);
 
 					JLabel cantitateLabel = new JLabel("CANTITATE:");
-					JTextField cantitateField = new JTextField(10);
+					JTextField cantitateField = new JTextField();
 					panelProduse.add(cantitateLabel);
 					panelProduse.add(cantitateField);
 					cantitateField.setEditable(false);
+					cantitateLabel.setBounds(50,10,50,10);
+					cantitateLabel.setBackground(Color.PINK);
 
 					JLabel pretLabel = new JLabel("PRET:");
 					JTextField pretField = new JTextField(10);
@@ -99,6 +101,8 @@ public class Plafar {
 					panelVanzare.add(vindeButon);
 					contentPane.add(panelVanzare);
 					panelVanzare.setBackground(Color.red);
+					 
+					
 
 					JPanel panelAdaugaProdus = new JPanel(new GridLayout(0,1));
 					JLabel adaugaProdus = new JLabel("ADAUGA PRODUS:");
