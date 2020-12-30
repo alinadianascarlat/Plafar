@@ -1,17 +1,20 @@
- 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FileDialog;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class Plafar {
 	public static void main(String[] args) {
-
 		JFrame window = new JFrame("AlinaPlant");
 		window.setSize(300, 220);
 		JTextField username = new JTextField(15);
@@ -35,7 +38,6 @@ public class Plafar {
 		window.add(pane);
 		window.setVisible(true);
 		Plafar.setLookAndFeel();
-		Plafar auth = new Plafar();
 
 		ok.addActionListener(new ActionListener() {
 			@Override
@@ -50,12 +52,12 @@ public class Plafar {
 					JPanel contentPane = new JPanel();
 					contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 					evidentaProduse.add(contentPane);
-					
-					JPanel panelProduse = new JPanel(new GridLayout(0,1));
+
+					JPanel panelProduse = new JPanel(new GridLayout(0, 1));
 					JLabel stocuriLabel = new JLabel("STOCURI");
 					panelProduse.add(stocuriLabel);
 
-					JComboBox produseList = new JComboBox(Produse.getProduse());
+					JComboBox<Produs> produseList = new JComboBox<Produs>(ManagerDeProduse.getProduse());
 					panelProduse.add(produseList);
 
 					JLabel cantitateLabel = new JLabel("CANTITATE:");
@@ -63,7 +65,7 @@ public class Plafar {
 					panelProduse.add(cantitateLabel);
 					panelProduse.add(cantitateField);
 					cantitateField.setEditable(false);
-					cantitateLabel.setBounds(50,10,50,10);
+					cantitateLabel.setBounds(50, 10, 50, 10);
 					cantitateLabel.setBackground(Color.PINK);
 
 					JLabel pretLabel = new JLabel("PRET:");
@@ -80,9 +82,9 @@ public class Plafar {
 					valabilitateField.setEditable(false);
 					panelProduse.setBackground(Color.orange);
 
-					JPanel panelVanzare = new JPanel(new GridLayout(0,1));
+					JPanel panelVanzare = new JPanel(new GridLayout(0, 1));
 					JLabel vanzare = new JLabel("VANZARE");
-					JComboBox produseList1 = new JComboBox(Produse.getProduse());
+					JComboBox<Produs> produseList1 = new JComboBox<Produs>(ManagerDeProduse.getProduse());
 					panelVanzare.add(vanzare);
 					panelVanzare.add(produseList1);
 
@@ -101,10 +103,8 @@ public class Plafar {
 					panelVanzare.add(vindeButon);
 					contentPane.add(panelVanzare);
 					panelVanzare.setBackground(Color.red);
-					 
-					
 
-					JPanel panelAdaugaProdus = new JPanel(new GridLayout(0,1));
+					JPanel panelAdaugaProdus = new JPanel(new GridLayout(0, 1));
 					JLabel adaugaProdus = new JLabel("ADAUGA PRODUS:");
 					panelAdaugaProdus.add(adaugaProdus);
 
@@ -112,7 +112,6 @@ public class Plafar {
 					JTextField numeField2 = new JTextField(10);
 					panelAdaugaProdus.add(numeLabel2);
 					panelAdaugaProdus.add(numeField2);
-					
 
 					JLabel cantitateLabel2 = new JLabel("CANTITATE:");
 					JTextField cantitateField2 = new JTextField(10);
@@ -123,38 +122,40 @@ public class Plafar {
 					JTextField pretField2 = new JTextField(10);
 					panelAdaugaProdus.add(pretLabel2);
 					panelAdaugaProdus.add(pretField2);
-					
+
 					JLabel valabilitateLabel2 = new JLabel("Valabilitate:");
 					JTextField valabilitateField2 = new JTextField(10);
 					panelAdaugaProdus.add(valabilitateLabel2);
 					panelAdaugaProdus.add(valabilitateField2);
-					
 
 					JButton adaugaButon = new JButton("ADAUGA");
 					panelAdaugaProdus.add(adaugaButon);
 					panelAdaugaProdus.setBackground(Color.green);
 					contentPane.add(panelAdaugaProdus);
 
-					//JFileChooser fc = new JFileChooser();
-					
+					evidentaProduse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 					vindeButon.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							Produs produsVanzare = (Produs) produseList1.getSelectedItem();
 							int cantitate = Integer.parseInt(cantitateField1.getText());
 							incasatField.setText(produsVanzare.pret * cantitate + "");
-							Produse.scadeCantitate(produsVanzare, cantitate);
+							ManagerDeProduse.scadeCantitate(produsVanzare, cantitate);
 						}
 					});
-					
+
 					adaugaButon.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
-							Produs produsAdaugat = new Produs(numeField2.getText(), Integer.parseInt(cantitateField2.getText()),Double.parseDouble(pretField2.getText()), valabilitateField2.getText());
+							Produs produsAdaugat = new Produs(numeField2.getText(),
+									Integer.parseInt(cantitateField2.getText()),
+									Double.parseDouble(pretField2.getText()), valabilitateField2.getText());
 							produseList.addItem(produsAdaugat);
 							produseList1.addItem(produsAdaugat);
-							Produse.adaugaProdus(produsAdaugat);
-						}});
+							ManagerDeProduse.adaugaProdus(produsAdaugat);
+						}
+					});
 
 					produseList.addActionListener(new ActionListener() {
 						@Override
@@ -173,9 +174,8 @@ public class Plafar {
 				}
 			}
 		});
-	}	
-		
-	
+	}
+
 	private static void setLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
