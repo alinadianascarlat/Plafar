@@ -11,12 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 public class Plafar {
 	public static void main(String[] args) {
 		JFrame window = new JFrame("AlinaPlant");
-		window.setSize(300, 220);
+		window.setSize(300, 250);
 		JTextField username = new JTextField(15);
 		JPasswordField password = new JPasswordField(15);
 		JButton ok = new JButton("OK");
@@ -123,7 +124,7 @@ public class Plafar {
 					panelAdaugaProdus.add(pretLabel2);
 					panelAdaugaProdus.add(pretField2);
 
-					JLabel valabilitateLabel2 = new JLabel("Valabilitate:");
+					JLabel valabilitateLabel2 = new JLabel("VALABILITATE:");
 					JTextField valabilitateField2 = new JTextField(10);
 					panelAdaugaProdus.add(valabilitateLabel2);
 					panelAdaugaProdus.add(valabilitateField2);
@@ -132,9 +133,14 @@ public class Plafar {
 					panelAdaugaProdus.add(adaugaButon);
 					panelAdaugaProdus.setBackground(Color.green);
 					contentPane.add(panelAdaugaProdus);
-
+					
+                   /**
+                    * Se foloseste pentru inchiderea automata a aplicatiei atunci cand este apasat butonul de inchidere corespunzator
+                    */
 					evidentaProduse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+                 /**
+                  * Scade cantitatea  produsului vandut
+                  */
 					vindeButon.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {

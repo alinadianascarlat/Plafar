@@ -60,8 +60,8 @@ public class ManagerDeProduse {
 	/**
 	 * Scade stocul unui produs si il salveaza in fisier.
 	 * 
-	 * @param produs
-	 * @param cantitate
+	 * @param produs - produsul pentru care se scade cantitatea
+	 * @param cantitate - cantitatea care se scade
 	 */
 	public static void scadeCantitate(Produs produs, int cantitate) {
 		for (int i = 0; i < produse.size(); i++) {
@@ -84,7 +84,7 @@ public class ManagerDeProduse {
 
 	/**
 	 * Salveaza toate produsele din variabila {@link #produse} in fisierul
-	 * <b>produse.txt</>
+	 * <b>produse.txt</b>
 	 */
 	private static void salveazaProdusele() {
 		try {
