@@ -5,16 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Clasa folosita pentru a incarca produsele din fisier si pentru a tine
- * stocul(cantitatea) de medicamente.
  * 
  * @author alina
  *
  */
 public class ManagerDeProduse {
 	/**
-	 * Tine in memoriw lista de produse pe care le incarcam din fisier si pe care
-	 * trebuie sa le salvam atunci cand modificam cantitatea.
+	 * Tine in memorei lista de produse pe care le incarcam din fisier si pe care
+	 * trebuie sa le salvam atunci cand modificam cantitatea
+	 * 
 	 */
 	private static ArrayList<Produs> produse = null;
 
@@ -22,13 +21,14 @@ public class ManagerDeProduse {
 	 * 
 	 * @return produsele incarcate din fisierul produse.txt
 	 */
+
 	public static Produs[] getProduse() {
 		if (produse != null) {
 			return (Produs[]) produse.toArray(new Produs[produse.size()]);
 		}
-		
+
 		produse = new ArrayList<Produs>();
-		
+
 		BufferedReader fisierCitireCuBuffer;
 		try {
 			fisierCitireCuBuffer = new BufferedReader(new FileReader("produse.txt"));
@@ -45,6 +45,10 @@ public class ManagerDeProduse {
 						j++;
 					}
 				}
+				
+				/**
+				 * Am convertit stringul la int si double
+				 */
 				produse.add(new Produs(produsDinLinie[0], Integer.parseInt(produsDinLinie[1]),
 						Double.parseDouble(produsDinLinie[2]), produsDinLinie[3]));
 				linie = fisierCitireCuBuffer.readLine();
@@ -58,9 +62,9 @@ public class ManagerDeProduse {
 	}
 
 	/**
-	 * Scade stocul unui produs si il salveaza in fisier.
+	 * Scade stocul unui produs si il salveaza in fisier
 	 * 
-	 * @param produs - produsul pentru care se scade cantitatea
+	 * @param produs    - produsul pentru care se scade cantitatea
 	 * @param cantitate - cantitatea care se scade
 	 */
 	public static void scadeCantitate(Produs produs, int cantitate) {
@@ -73,22 +77,33 @@ public class ManagerDeProduse {
 	}
 
 	/**
-	 * Adauga un produs nou si il saveaza in fisier.
+	 * Adauga un produs nou si il salveaza in fisier
 	 * 
-	 * @param produs - produsul care trebuie adaugat
+	 * @param produs-produsul care trebuie adaugat
 	 */
+
 	public static void adaugaProdus(Produs produs) {
 		produse.add(produs);
 		salveazaProdusele();
 	}
 
 	/**
-	 * Salveaza toate produsele din variabila {@link #produse} in fisierul
+	 * Salveaza toate produsele din variabila(@link #produse)in fisierul
 	 * <b>produse.txt</b>
 	 */
+
 	private static void salveazaProdusele() {
 		try {
+			
+			/**
+			 * 
+			 * 
+			 */
 			FileWriter fisier = new FileWriter("produse.txt", false);
+			/**
+			 * Parcurgem tot array de produse pentru fiecare produs
+			 * din Produse
+			 */
 			for (Produs produs : produse) {
 				fisier.write(
 						produs.nume + "," + produs.cantitate + "," + produs.pret + "," + produs.valabilitate + "\n");

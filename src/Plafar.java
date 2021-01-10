@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+/**
+ * 
+ * @author alina
+ *
+ */
 public class Plafar {
 	public static void main(String[] args) {
 		JFrame window = new JFrame("AlinaPlant");
@@ -23,7 +29,10 @@ public class Plafar {
 		JButton ok = new JButton("OK");
 		String numeAdministrator = "alina";
 		String parolaAdministrator = "diana";
-
+		/**
+		 * Se foloseste pentru a obtine inchiderea automata a unei aplicatii atunci cand
+		 * e apasat butonul de inchidere corespunzator ferestrei
+		 */
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel pane = new JPanel();
@@ -40,6 +49,10 @@ public class Plafar {
 		window.setVisible(true);
 		Plafar.setLookAndFeel();
 
+		/**
+		 * Am creat un eveniment cu ajutorul caruia trecem in fereastra urmatoare atunci
+		 * cand numele si parola sunt introduse corect
+		 */
 		ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -52,12 +65,18 @@ public class Plafar {
 					JFrame evidentaProduse = new JFrame("EVIDENTA PRODUSE FARMACEUTICE");
 					JPanel contentPane = new JPanel();
 					contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
+
 					evidentaProduse.add(contentPane);
 
 					JPanel panelProduse = new JPanel(new GridLayout(0, 1));
 					JLabel stocuriLabel = new JLabel("STOCURI");
 					panelProduse.add(stocuriLabel);
 
+					/**
+					 * Am creat un ComboBox de tip Produs(este un tip generic, altfel am putea pune
+					 * orice obiect de orice tip)
+					 * 
+					 */
 					JComboBox<Produs> produseList = new JComboBox<Produs>(ManagerDeProduse.getProduse());
 					panelProduse.add(produseList);
 
@@ -131,16 +150,16 @@ public class Plafar {
 
 					JButton adaugaButon = new JButton("ADAUGA");
 					panelAdaugaProdus.add(adaugaButon);
+
+					JLabel confirmareLabel = new JLabel("PRODUS ADAUGAT");
+					panelAdaugaProdus.add(confirmareLabel);
 					panelAdaugaProdus.setBackground(Color.green);
 					contentPane.add(panelAdaugaProdus);
-					
-                   /**
-                    * Se foloseste pentru inchiderea automata a aplicatiei atunci cand este apasat butonul de inchidere corespunzator
-                    */
+
 					evidentaProduse.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                 /**
-                  * Scade cantitatea  produsului vandut
-                  */
+					/**
+					 * Scade cantitatea produsului vandut
+					 */
 					vindeButon.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent e) {
@@ -160,6 +179,12 @@ public class Plafar {
 							produseList.addItem(produsAdaugat);
 							produseList1.addItem(produsAdaugat);
 							ManagerDeProduse.adaugaProdus(produsAdaugat);
+							confirmareLabel.setText("Am adaugat produsul.");
+							numeField2.setText("");
+							cantitateField2.setText("");
+							pretField2.setText("");
+							valabilitateField2.setText("");
+							
 						}
 					});
 
@@ -173,6 +198,10 @@ public class Plafar {
 						}
 
 					});
+					/**
+					 * Am facut vizibila fereastra
+					 */
+
 					evidentaProduse.setVisible(true);
 					evidentaProduse.pack();
 				} else {
@@ -182,6 +211,9 @@ public class Plafar {
 		});
 	}
 
+	/**
+	 * Am specificat cum trebuie sa fie fereastra
+	 */
 	private static void setLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");

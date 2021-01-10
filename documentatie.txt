@@ -1,0 +1,35 @@
+                                      DOCUMENTATIE PROIECT 
+                                             PLAFAR
+
+   In realizarea acestui proiect am folosit libraria Swing, parte JFC(Java Foundation Classes).
+   Am creat trei clase:Plafar,Produs si ManagerDeProduse.
+   Primul pas in realizarea acestui proiect a fost crearea unui panel in cadrul clase Plafar,numit "pane",la care am adaugat folosind metoda "add" o fereastra.Aceasta fereastra de deschidere am numit-o "AlinaPlant", careia i-am setat o dimensiune(300,220) ,folosind metoda setSize(width,height)si am facut-o vizibila.
+   In aceasta fereastra am creat mai multe componente:
+-o eticheta pe care am numit- o "user",careia i-am atasat un camp text de dimensiune 15.
+-o eticheta pe care am numit-o "password",careia i-am atasat un camp text de dimensiune 15.
+-un buton, numit"OK",care ne permite trecerea in fereastra urmatoare
+daca numeAdministrator si parolaAdministrator sunt corecte,corespund cu datele de intrare.Pentru aceasta am creat un eveniment pe butonul "OK"in care am pus o conditie(nume = numeAdministrator "alina" si parola = parolaAdministrator "diana").Daca conditiile nu sunt satisfacute se va afisa un mesaj"Incorect username sau password".
+   Pentru fiecare din aceste componente am importat librariile corespunzatoare.Toate componentele le-am adaugat la panel, inclusiv fereastra.
+  Daca datele introduse sunt corecte putem trece in urmatoarea fereastra pe care am numit-o "EVIDENTA PRODUSE FARMACEUTICE". 
+Aceasta fereastra am adaugat-o la un panel principal numit  "contentPane".Acest panel contine trei paneluri numite:panelProduse,
+panelVanzare si panelAdaugaProdus.
+  Primul panelProduse contine urmatoarele componente:
+-un label numit "STOCURI";
+-un label si un textField pentru "CANTITATE","PRET", "TERMEN VALABILITATE".Fiecare textField l-am facut editabil.
+ 
+  Al doilea panelVAnzare contine urmatoarele componente:
+-un label numit "VANZARE";
+-un ComboBox pentru produseLista;
+-un label si un textField pentru "CANTITATE","TOTAL INCASAT".Fiecare textField l-am facut editabil;
+-un buton pe care l-am numit "VINDE".Pe acest buton am creat un eveniment
+ Al treilea panelAdaugaProdus contine urmatoarele componente:
+-un label numit "ADAUGA PRODUSE";
+-un label si un textField pentru "NUME","CANTITATE","PRET","VALABILITATE";
+-un buton "ADAUGA".Fiecare textField l-am facut editabil.
+  A doua clasa am numit- o Produs, in care am modelat produsul din aplicatie.Pentru fiecare produs am specificat  numele, cantitatea,pretul si termenul de valabilitate.
+  A treia clasa este ManagerDeProduse  care tine in memorie o lista de produse pe care o incarcam dintr-un fisier si pe care trebuie sa o salvam atunci cand modificam cantitatea de produse(scoatem sau adaugam 
+produse noi in lista).
+
+
+
+
